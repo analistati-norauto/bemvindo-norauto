@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boas-vindas - Integração NORAUTO</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <header class="header-interna">
+        <div class="logo-header">NORAUTO RENT A CAR</div>
+        <div class="user-info">
+            <span id="nome-motorista">Carregando...</span>
+            <button class="btn-sair" onclick="fazerLogout()">Sair</button>
+        </div>
+    </header>
+
+    <main class="welcome-container">
+        <h1 style="color: var(--azul-escuro); margin-bottom: 15px;">Seja bem-vindo(a) à NORAUTO RENT A CAR!</h1>
+        
+        <p class="welcome-text">
+            Estamos felizes em ter você conosco. Esta integração foi preparada para apresentar nossa empresa, nossos valores e as principais orientações para o início da sua jornada. <br><br>
+            Assista ao vídeo institucional e, em seguida, responda ao quiz de integração.
+        </p>
+
+        <div class="video-wrapper" id="video-container">
+            <!-- O vídeo ou a mensagem de placeholder será injetada via JS aqui -->
+        </div>
+
+        <button class="btn btn-amarelo" style="max-width: 300px; margin: 0 auto; display: block;" onclick="window.location.href='quiz.html'">
+            Continuar para o quiz
+        </button>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/integracao.js"></script>
+</body>
+</html>

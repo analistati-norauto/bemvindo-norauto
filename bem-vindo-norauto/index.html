@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Integração NORAUTO</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Importação do Supabase via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="login-page">
+
+    <div class="login-card">
+        <div class="logo-container">
+            <!-- Área destinada para a logo. Para usar imagem, descomente a linha abaixo e ajuste o caminho -->
+            <img src="assets/logo/PNG Logo Norauto.png" alt="Logo NORAUTO">
+            <!-- <div class="logo-texto">NORAUTO</div>
+            <div class="logo-subtexto">RENT A CAR</div> -->
+        </div>
+
+        <div id="mensagem-erro" class="alert alert-error hidden"></div>
+
+        <form id="form-login">
+            <div class="form-group">
+                <label for="email">E-mail ou Usuário</label>
+                <input type="email" id="email" class="form-control" placeholder="Digite seu e-mail" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" class="form-control" placeholder="Digite sua senha" required>
+            </div>
+
+            <button type="submit" class="btn btn-amarelo" id="btn-entrar">Entrar</button>
+        </form>
+    </div>
+
+    <!-- Scripts da aplicação -->
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

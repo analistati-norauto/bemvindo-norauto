@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - NORAUTO</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <header class="header-interna">
+        <a href="#" class="logo-header">NORAUTO RENT A CAR</a>
+        <div class="user-info">
+            <span id="nome-admin">Carregando...</span>
+            <button class="btn-sair" onclick="fazerLogout()">Sair</button>
+        </div>
+    </header>
+
+    <main class="admin-container">
+        <h2 style="margin-bottom: 20px; color: var(--azul-escuro);">Gestão de Integração</h2>
+        
+        <div class="admin-header-actions">
+            <input type="text" id="input-pesquisa" class="form-control search-bar" placeholder="Pesquisar por nome ou e-mail...">
+            <button class="btn btn-amarelo" style="width: auto;" onclick="abrirModal()">+ Novo Usuário</button>
+        </div>
+
+        <div class="table-responsive">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Tipo</th>
+                        <th>Status</th>
+                        <th>Pontuação</th>
+                        <th>Data Conclusão</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-usuarios">
+                    <tr>
+                        <td colspan="7" style="text-align: center;">Carregando usuários...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Modal de Cadastro -->
+    <div id="modal-cadastro" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Cadastrar Novo Usuário</h3>
+                <button class="btn-close" onclick="fecharModal()">&times;</button>
+            </div>
+            
+            <div id="msg-modal" class="alert hidden"></div>
+
+            <form id="form-cadastro">
+                <div class="form-group">
+                    <label for="cad-nome">Nome Completo</label>
+                    <input type="text" id="cad-nome" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cad-email">E-mail</label>
+                    <input type="email" id="cad-email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cad-senha">Senha Provisória</label>
+                    <input type="password" id="cad-senha" class="form-control" required minlength="6">
+                </div>
+                
+                <div class="form-group">
+                    <label for="cad-tipo">Tipo de Usuário</label>
+                    <select id="cad-tipo" class="form-control" required>
+                        <option value="Motorista">Motorista</option>
+                        <option value="Administrador">Administrador</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-amarelo" id="btn-salvar-usuario">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
