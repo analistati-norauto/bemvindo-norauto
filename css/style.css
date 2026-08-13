@@ -425,3 +425,102 @@ body {
 .btn-secundario:hover {
     background-color: #e2e6ea;
 }
+
+/* =========================================
+   NOVA ETAPA: MATERIAIS E INDICADOR DE PROGRESSO
+========================================= */
+
+/* Indicador de Etapas */
+.step-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.step {
+    background-color: var(--borda);
+    color: var(--texto-claro);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.step.active {
+    background-color: var(--azul-escuro);
+    color: var(--branco);
+}
+
+/* Visualizador de PDF (Apresentação) */
+.pdf-viewer-container {
+    background-color: #333;
+    padding: 20px 10px;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+#pdf-canvas {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.pdf-controls {
+    background-color: var(--branco);
+    padding: 15px;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--borda);
+    border-top: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+}
+
+.pdf-page-info {
+    font-weight: bold;
+    color: var(--azul-escuro);
+}
+
+/* Card de Documento (Download) */
+.doc-card {
+    background-color: var(--branco);
+    border: 1px solid var(--borda);
+    border-left: 5px solid var(--amarelo);
+    border-radius: 8px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+    gap: 20px;
+}
+
+.doc-info h3 {
+    color: var(--azul-escuro);
+    margin-bottom: 5px;
+}
+
+.doc-info p {
+    color: var(--texto-claro);
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .doc-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .doc-card .btn {
+        width: 100%;
+    }
+}

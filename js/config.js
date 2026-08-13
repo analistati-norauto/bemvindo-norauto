@@ -8,3 +8,7 @@ window.SupabaseLib = window.supabase;
 
 // 2. Sobrescrevemos o supabase principal para o login funcionar perfeitamente
 window.supabase = window.SupabaseLib.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// NOVOS MATERIAIS DA INTEGRAÇÃO
+const APRESENTACAO_PDF = "assets/apresentacao/apresentacao_portal.pdf";
+const DOCUMENTO_INTEGRACAO = "assets/documentos/documentacao_motoristas.pdf";

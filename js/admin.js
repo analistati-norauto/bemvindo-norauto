@@ -80,11 +80,15 @@ function renderizarTabela(filtro = '') {
         const tr = document.createElement('tr');
         tr.style.opacity = user.ativo ? '1' : '0.5';
 
+        // Verifica se a propriedade existe (pode ser null/false em usuários antigos)
+        const materiaisStatus = user.materiais_acessados ? '<span style="color: var(--sucesso); font-weight: bold;">Acessado ✓</span>' : '<span style="color: var(--texto-claro);">Não acessado</span>';
+
         tr.innerHTML = `
             <td>${user.nome}</td>
             <td>${user.email}</td>
             <td>${user.tipo}</td>
             <td><span class="status-badge ${classeStatus}">${user.status_integracao}</span></td>
+            <td>${materiaisStatus}</td>
             <td>${pontuacao}</td>
             <td>${dataFormatada}</td>
             <td>

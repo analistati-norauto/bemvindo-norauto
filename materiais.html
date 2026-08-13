@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materiais da Integração - NORAUTO</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Supabase e PDF.js via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+
+    <header class="header-interna">
+        <div class="logo-header">
+            <!-- Substitua pelo caminho da sua logo se desejar -->
+            NORAUTO RENT A CAR
+        </div>
+        <div class="user-info">
+            <span id="nome-motorista">Carregando...</span>
+            <button class="btn-sair" onclick="fazerLogout()">Sair</button>
+        </div>
+    </header>
+
+    <main class="welcome-container" style="max-width: 900px;">
+        
+        <!-- Indicador de Progresso -->
+        <div class="step-indicator">
+            <div class="step">1. Boas-vindas</div>
+            <div class="step active">2. Materiais</div>
+            <div class="step">3. Quiz</div>
+        </div>
+
+        <h1 style="color: var(--azul-escuro); margin-bottom: 15px;">Materiais da Integração</h1>
+        <p class="welcome-text">
+            Confira a apresentação abaixo e faça o download do documento disponibilizado para esta etapa da sua integração.
+        </p>
+
+        <!-- Seção 1: Apresentação em PDF -->
+        <h3 style="text-align: left; color: var(--azul-escuro); margin-bottom: 15px;">Apresentação de Integração</h3>
+        
+        <div id="pdf-wrapper">
+            <div class="pdf-viewer-container" id="pdf-container">
+                <canvas id="pdf-canvas"></canvas>
+            </div>
+            <div class="pdf-controls">
+                <button class="btn btn-secundario" id="btn-prev" style="width: auto; padding: 8px 15px;">&larr; Anterior</button>
+                <span class="pdf-page-info">Slide <span id="page-num"></span> de <span id="page-count"></span></span>
+                <button class="btn btn-secundario" id="btn-next" style="width: auto; padding: 8px 15px;">Próximo &rarr;</button>
+            </div>
+        </div>
+
+        <!-- Seção 2: Documento para Download -->
+        <h3 style="text-align: left; color: var(--azul-escuro); margin-bottom: 15px;">Documento da Integração</h3>
+        <div class="doc-card">
+            <div class="doc-info" style="text-align: left;">
+                <h3>📄 Documento de Integração</h3>
+                <p>Faça o download do documento disponibilizado pela NORAUTO RENT A CAR.</p>
+            </div>
+            <div>
+                <a href="#" id="btn-download" class="btn btn-amarelo" download style="text-decoration: none; display: inline-block; width: auto; padding: 12px 25px;">Baixar documento</a>
+            </div>
+        </div>
+
+        <!-- Botão de Continuação -->
+        <button class="btn btn-amarelo" style="max-width: 300px; margin: 0 auto; display: block;" onclick="window.location.href='quiz.html'">
+            Continuar para o Quiz &rarr;
+        </button>
+
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/materiais.js"></script>
+</body>
+</html>
