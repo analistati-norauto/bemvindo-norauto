@@ -70,19 +70,31 @@ function renderizarPagina(num) {
     pageRendering = true;
 
     pdfDoc.getPage(num).then(function(page) {
-        // Responsividade: Calcula a escala baseada na largura do container (Mobile-friendly)
         const containerWidth = document.getElementById('pdf-container').clientWidth;
         const unscaledViewport = page.getViewport({ scale: 1 });
         
-        // Define uma escala máxima para não ficar gigantesco no PC, e ajusta para celular
-        const scale = Math.min(1.2, (containerWidth - 20) / unscaledViewport.width);
-        const viewport = page.getViewport({ scale: scale });
+        // Define a escala baseada no tamanho da tela
+        const baseScale = Math.min(1.5, (containerWidth - 20) / unscaledViewport.width);
+        const viewport = page.getViewport({ scale: baseScale });
 
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+        // Correção de qualidade: detecta se é uma tela de alta resolução (Celulares modernos)
+        const outputScale = window.devicePixelRatio || 1;
+
+        // O tamanho visual no CSS continua o mesmo para caber certinho na tela
+        canvas.style.width = Math.floor(viewport.width) + "px";
+        canvas.style.height = Math.floor(viewport.height) + "px";
+
+        // A resolução interna do Canvas é multiplicada para ficar extremamente nítida
+        canvas.width = Math.floor(viewport.width * outputScale);
+        canvas.height = Math.floor(viewport.height * outputScale);
+
+        const transform = outputScale !== 1
+            ? [outputScale, 0, 0, outputScale, 0, 0]
+            : null;
 
         const renderContext = {
             canvasContext: ctx,
+            transform: transform,
             viewport: viewport
         };
         
@@ -132,5 +144,39 @@ document.addEventListener('keydown', (e) => {
         document.getElementById('btn-next').click();
     } else if (e.key === 'ArrowLeft') {
         document.getElementById('btn-prev').click();
+    }
+});
+
+// ==========================================
+// MODO TELA CHEIA (FULLSCREEN API)
+// ==========================================
+const btnFullscreen = document.getElementById('btn-fullscreen');
+const pdfWrapper = document.getElementById('pdf-wrapper');
+
+btnFullscreen.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+        // Entrar em tela cheia de forma nativa
+        if (pdfWrapper.requestFullscreen) {
+            pdfWrapper.requestFullscreen();
+        } else if (pdfWrapper.webkitRequestFullscreen) { /* Suporte Safari antigo */
+            pdfWrapper.webkitRequestFullscreen();
+        }
+    } else {
+        // Sair da tela cheia
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+    }
+});
+
+// Recalcular o tamanho do PDF sempre que girar ou abrir a tela cheia
+document.addEventListener('fullscreenchange', () => {
+    if (pdfDoc) {
+        // Um pequeno delay para dar tempo do navegador ajustar a tela antes de re-renderizar
+        setTimeout(() => {
+            renderizarPagina(pageNum);
+        }, 200);
     }
 });
